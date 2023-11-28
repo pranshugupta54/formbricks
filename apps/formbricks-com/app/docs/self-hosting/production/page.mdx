@@ -1,21 +1,21 @@
 export const metadata = {
-  title: "Step by Step Guide on Deploying Formbricks to Production on Ubuntu",
+  title: "Comprehensive Guide: Deploying Formbricks to Production on Ubuntu",
   description:
     "Master the swift deployment of Formbricks on an Ubuntu server with our step-by-step guide. Use a single command to automate Docker, Postgres DB, SSL certificate configuration, and more. Encounter issues? Dive into our troubleshooting steps or join our community on Discord for assistance.",
 };
-
-#### Self-Hosting
-
-# One-Click Setup
-
+#### Self-Hosting Formbricks on Ubuntu
+# Quick Setup with One-Click
 If you want to quickly set up a production instance of Formbricks on a server running Ubuntu, we've got you covered! This method utilizes a convenient shell script that takes care of everything, including Docker, Postgres DB, and SSL certificate configuration. The shell script will automatically install all the required dependencies and configure your server, making the process a breeze.
-
 This is the quickest way to get Formbricks up and running on an Ubuntu server. The shell script will automatically install all the required dependencies and configure your server, making the process a breeze.
-
-### Requirements
-
+### Prerequisites for Setup
 Before you proceed, make sure you have the following:
-
+- A **Linux Ubuntu** Virtual Machine deployed with SSH access.
+  <Note>This only works with an Ubuntu machine so please verify the underlying OS beforehand!</Note>
+- An **A record** set up to connect a custom domain to your instance. Formbricks will **automatically create an SSL certificate** for your domain using Let's Encrypt.
+## Deploying Formbricks with a Single Command
+Copy and paste the following command into your terminal:
+<Col>
+<CodeGroup title="Single Command to deploy Formbricks">
 - A **Linux Ubuntu** Virtual Machine deployed with SSH access.
 
   <Note>This only works with an Ubuntu machine so please verify the underlying OS beforehand!</Note>
