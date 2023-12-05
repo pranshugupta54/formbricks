@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
-const email = "testp@gmail.com";
-const password = "Test@123";
+const email = process.env.TEST_EMAIL;
+const password = process.env.TEST_PASSWORD;
 
 async function createUser(page) {
   await page.goto("http://localhost:3000/auth/signup");
