@@ -48,14 +48,14 @@ export default function OpenQuestionForm({
   const [showSubheader, setShowSubheader] = useState(!!question.subheader);
   const defaultPlaceholder = getPlaceholderByInputType(question.inputType ?? "text");
 
-  const handleInputChange = (inputType: TSurveyOpenTextQuestionInputType) => {
+  const handleInputChange = useCallback((inputType: TSurveyOpenTextQuestionInputType) => {
     const updatedAttributes = {
       inputType: inputType,
       placeholder: getPlaceholderByInputType(inputType),
       longAnswer: inputType === "text" ? question.longAnswer : false,
     };
     updateQuestion(questionIdx, updatedAttributes);
-  };
+  }, [question.longAnswer, questionIdx, updateQuestion]);
 
   const environmentId = localSurvey.environmentId;
 
