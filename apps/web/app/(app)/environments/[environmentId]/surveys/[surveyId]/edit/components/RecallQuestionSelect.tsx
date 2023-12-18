@@ -27,7 +27,7 @@ const questionIconMapping = {
 };
 
 export default function RecallQuestionSelect({
-  currentQuestionIdx,
+  const { environmentId, questions } = localSurvey;
   localSurvey,
   question,
   addRecallQuestion,
