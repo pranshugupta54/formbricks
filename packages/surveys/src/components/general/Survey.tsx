@@ -64,38 +64,38 @@ export function Survey({
   }, []);
   let currIdx = currentQuestionIndex;
   let currQues = currentQuestion;
-  function getNextQuestionId(data: TResponseData, isFromPrefilling: Boolean = false): string {
-    const questions = survey.questions;
-    const responseValue = data[questionId];
-
-    if (questionId === "start") {
-      if (!isFromPrefilling) {
-        return questions[0]?.id || "end";
-      } else {
-        currIdx = 0;
-        currQues = questions[0];
-      }
+  function getStartQuestionId(questions: TSurveyQuestion[], isFromPrefilling: Boolean = false): string | void {
+    if (!isFromPrefilling) {
+      return questions[0]?.id || "end";
+    } else {
+      currIdx = 0;
+      currQues = questions[0];
     }
-    if (currIdx === -1) throw new Error("Question not found");
-
+  }
+  
+  function getQuestionIdFromLogic(currQues: TSurveyQuestion, responseValue: any): string | void {
     if (currQues?.logic && currQues?.logic.length > 0) {
       for (let logic of currQues.logic) {
         if (!logic.destination) continue;
-
+  
         if (evaluateCondition(logic, responseValue)) {
           return logic.destination;
         }
       }
     }
-    return questions[currIdx + 1]?.id || "end";
   }
-
-  const onChange = (responseDataUpdate: TResponseData) => {
-    const updatedResponseData = { ...responseData, ...responseDataUpdate };
-    setResponseData(updatedResponseData);
-  };
-
-  const onSubmit = (responseData: TResponseData, ttc: TResponseTtc, isFromPrefilling: Boolean = false) => {
+  
+  function getNextQuestionId(data: TResponseData, isFromPrefilling: Boolean = false): string {
+    const questions = survey.questions;
+    const responseValue = data[questionId];
+  
+    if (questionId === "start") {
+      return getStartQuestionId(questions, isFromPrefilling) || "end";
+    }
+    if (currIdx === -1) throw new Error("Question not found");
+  
+    return getQuestionIdFromLogic(currQues, responseValue) || questions[currIdx + 1]?.id || "end";
+  }
     const questionId = Object.keys(responseData)[0];
     setLoadingElement(true);
     const nextQuestionId = getNextQuestionId(responseData, isFromPrefilling);
