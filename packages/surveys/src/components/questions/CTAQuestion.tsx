@@ -74,7 +74,7 @@ export default function CTAQuestion({
             isLastQuestion={isLastQuestion}
             focus={true}
             onClick={() => {
-              if (question.buttonExternal && question.buttonUrl) {
+              if (question.buttonExternal && question.buttonUrl && isValidURL(question.buttonUrl)) {
                 window?.open(question.buttonUrl, "_blank")?.focus();
               }
               const updatedTtcObj = getUpdatedTtc(ttc, question.id, performance.now() - startTime);
