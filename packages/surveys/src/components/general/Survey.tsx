@@ -95,7 +95,7 @@ export function Survey({
     setResponseData(updatedResponseData);
   };
 
-  const onSubmit = (responseData: TResponseData, ttc: TResponseTtc, isFromPrefilling: Boolean = false) => {
+  const onSubmit = useCallback((responseData: TResponseData, ttc: TResponseTtc, isFromPrefilling: Boolean = false) => {
     const questionId = Object.keys(responseData)[0];
     setLoadingElement(true);
     const nextQuestionId = getNextQuestionId(responseData, isFromPrefilling);
@@ -109,7 +109,7 @@ export function Survey({
     setHistory([...history, questionId]);
     setLoadingElement(false);
     onActiveQuestionChange(nextQuestionId);
-  };
+  }, [getNextQuestionId, onResponse, onFinished, setQuestionId, setHistory, setLoadingElement, onActiveQuestionChange]);
 
   const parseRecallInformation = (question: TSurveyQuestion) => {
     if (!question.headline.includes("recall:")) return question;
