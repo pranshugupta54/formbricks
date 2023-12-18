@@ -1,34 +1,34 @@
-import { TSurvey } from "@formbricks/types/surveys";
+const RECALL_PATTERN = /recall:([A-Za-z0-9]+)/;
+const RECALL_PATTERN_GLOBAL = /recall:([A-Za-z0-9]+)/g;
+const FALLBACK_PATTERN = /fallback:(\S*)/;
+const RECALL_INFO_PATTERN = /recall:([A-Za-z0-9]+)\/fallback:(\S*)/;
 
 export function extractId(text: string) {
-  const pattern = /recall:([A-Za-z0-9]+)/;
-  const match = text.match(pattern);
-  if (match && match[1]) {
-    return match[1];
-  } else {
-    return null;
-  }
+  const match = text.match(RECALL_PATTERN);
+  ...
 }
 
 export function extractIds(text: string) {
-  const pattern = /recall:([A-Za-z0-9]+)/g;
-  const matches = text.match(pattern);
-  if (!matches) {
-    return [];
-  }
-  return matches
-    .map((match) => {
-      const matchPattern = /recall:([A-Za-z0-9]+)/;
-      const idMatch = match.match(matchPattern);
-      return idMatch ? idMatch[1] : null;
-    })
-    .filter((id) => id !== null);
+  const matches = text.match(RECALL_PATTERN_GLOBAL);
+  ...
+  const idMatch = match.match(RECALL_PATTERN);
+  ...
 }
 
 export function extractFallbackValue(text: string): string {
-  const pattern = /fallback:(\S*)/;
-  const match = text.match(pattern);
-  if (match && match[1]) {
+  const match = text.match(FALLBACK_PATTERN);
+  ...
+}
+
+export function extractRecallInfo(headline: string): string | null {
+  const match = headline.match(RECALL_INFO_PATTERN);
+  ...
+}
+
+export function findRecallInfoById(text: string, id: string): string | null {
+  const pattern = new RegExp(`recall:${id}\/fallback:(\S*)`, "g");
+  ...
+}
     return match[1];
   } else {
     return "";
