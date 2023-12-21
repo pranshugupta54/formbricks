@@ -103,13 +103,13 @@ export default function Header() {
   const [stickyNav, setStickyNav] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       if (window.scrollY > 250) {
         setStickyNav(true);
       } else {
         setStickyNav(false);
       }
-    };
+    }, 200);
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
