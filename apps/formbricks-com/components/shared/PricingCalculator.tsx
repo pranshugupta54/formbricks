@@ -24,30 +24,30 @@ const LinkSurveySlider = ({ label, usersCount, price, onSliderChange }) => (
         onValueChange={onSliderChange}
       />
       <div className="mt-2 flex items-center justify-between text-sm">
-        {[3, 4, 5, 6].map((mark) => (
-          <span key={mark} className="text-slate-600 dark:text-slate-300">
-            {mark === 3 ? "1K" : mark === 4 ? "10K" : mark === 5 ? "100K" : "1M"}
-          </span>
-        ))}
-      </div>
-    </div>
-  </div>
-);
-
-const InAppSlider = ({ label, usersCount, price, onSliderChange }) => (
-  <div className="mt-12">
-    <div className="mb-2 flex items-center gap-x-2 md:gap-x-4">
-      <div className="md:text-md w-3/6 text-left text-sm font-medium text-slate-700 dark:text-slate-200">
-        {label}
-      </div>
-      <div className="md:text-md w-2/6 text-center text-sm font-medium text-slate-700 dark:text-slate-200">
-        {Math.round(usersCount).toLocaleString()} Submissions
-      </div>
-      <div className="md:text-md flex w-1/6 items-center justify-end text-center text-sm font-medium text-slate-700 dark:text-slate-200 md:justify-center">
-        <span>${price.toFixed(2)}</span>
-      </div>
-    </div>
-    <div className="my-2 w-5/6 pr-8 md:pr-20">
+        {[3, 4, 5, 6].map((mark) => {
+          let label;
+          switch(mark) {
+            case 3:
+              label = "1K";
+              break;
+            case 4:
+              label = "10K";
+              break;
+            case 5:
+              label = "100K";
+              break;
+            case 6:
+              label = "1M";
+              break;
+            default:
+              label = "";
+          }
+          return (
+            <span key={mark} className="text-slate-600 dark:text-slate-300">
+              {label}
+            </span>
+          );
+        })}
       <Slider
         className="slider-class"
         defaultValue={[Math.log10(250)]}
