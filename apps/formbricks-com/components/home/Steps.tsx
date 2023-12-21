@@ -23,31 +23,31 @@ export const Steps: React.FC = () => {
         heading="Set Formbricks up in minutes"
         subheading="Formbricks is designed for as little dev attention as possible. Here’s how:"
       />
-      <div id="howitworks" className="xs:m-auto mb-12 mt-16 max-w-lg md:mb-0 md:mt-8 md:max-w-none">
-        <div className="px-4 sm:max-w-4xl sm:px-6 lg:max-w-7xl lg:px-8">
-          <div className="xs:grid md:grid-cols-2 md:items-center md:gap-16">
-            <div className="pb-8 sm:pl-10 md:pb-0">
-              <h4 className="text-brand-dark font-bold">Step 1</h4>
-              <h2 className="xs:text-3xl text-2xl font-bold tracking-tight text-slate-800 dark:text-slate-200">
-                Copy + Paste
-              </h2>
-              <p className="text-md mt-6 max-w-lg leading-7 text-slate-500 dark:text-slate-400">
-                Simply copy a &lt;script&gt; tag to your HTML head - that’s about it. Or use NPM to install
-                Formbricks for React, Vue, Svelte, etc.
-              </p>
-            </div>
-            <div className="rounded-lg bg-slate-100 dark:bg-slate-800">
-              <SetupTabs />
+      const Step = ({ stepNumber, title, description, children }) => (
+        <div className="mx-auto mb-12 mt-8 max-w-lg md:mb-0 md:mt-32  md:max-w-none">
+          <div className="px-4 sm:max-w-4xl sm:px-6 lg:max-w-7xl lg:px-8">
+            <div className="grid md:grid-cols-2 md:items-center md:gap-16">
+              <div className="pb-8 sm:pl-10 md:pb-0">
+                <h4 className="text-brand-dark font-bold">Step {stepNumber}</h4>
+                <h2 className="xs:text-3xl text-2xl font-bold tracking-tight text-slate-800 dark:text-slate-200 sm:text-3xl">
+                  {title}
+                </h2>
+                <p className="text-md mt-6 max-w-lg leading-7 text-slate-500 dark:text-slate-400">
+                  {description}
+                </p>
+              </div>
+              {children}
             </div>
           </div>
         </div>
-      </div>
-      <div className="mx-auto mb-12 mt-8 max-w-lg md:mb-0 md:mt-32  md:max-w-none">
-        <div className="px-4 sm:max-w-4xl sm:px-6 lg:max-w-7xl lg:px-8">
-          <div className="grid md:grid-cols-2 md:items-center md:gap-16">
-            <div className="order-last w-full rounded-lg bg-slate-100 p-4 dark:bg-slate-800 sm:py-8 md:order-first">
-              <div className="flex h-40 items-center justify-center">
-                <Button
+      );
+      
+      // Usage in Steps component
+      <Step stepNumber={1} title="Copy + Paste" description="Simply copy a &lt;script&gt; tag to your HTML head - that’s about it. Or use NPM to install Formbricks for React, Vue, Svelte, etc.">
+        <div className="rounded-lg bg-slate-100 dark:bg-slate-800">
+          <SetupTabs />
+        </div>
+      </Step>
                   variant="primary"
                   className=""
                   onClick={() => {
