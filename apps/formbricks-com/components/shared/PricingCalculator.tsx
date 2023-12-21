@@ -127,11 +127,12 @@ const MonthlyEstimate = ({ price }) => (
 );
 
 export const PricingCalculator = () => {
-  const [inProductSlider, setInProductSlider] = useState(Math.log10(1000));
-  const [linkSlider, setLinkSlider] = useState(Math.log10(1000));
-
+  import { useState, useMemo } from "react";
+  
+  //...
+  
   const transformToLog = (value) => Math.pow(10, value);
-
+  
   const calculatePrice = (users) => {
     if (users <= 5000) {
       return 0;
@@ -139,10 +140,9 @@ export const PricingCalculator = () => {
       return users * 0.005;
     }
   };
-
-  const usersCountForInProductSlider = transformToLog(inProductSlider);
-  const productSurveysPrice = calculatePrice(usersCountForInProductSlider);
-
+  
+  const usersCountForInProductSlider = useMemo(() => transformToLog(inProductSlider), [inProductSlider]);
+  const productSurveysPrice = useMemo(() => calculatePrice(usersCountForInProductSlider), [usersCountForInProductSlider]);
   return (
     <div className="px-4 md:px-16">
       <h2 className="px-4 py-4 text-lg font-semibold leading-7 tracking-tight text-slate-800 dark:text-slate-200 md:px-12 md:text-2xl">
