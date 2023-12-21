@@ -190,11 +190,11 @@ export default function Header() {
                               </div>
                               <div className="ml-4">
                                 <p
-                                  className={clsx(
-                                    brick.status ? "text-slate-900 dark:text-slate-100" : "text-slate-400",
-                                    "font-semibold"
-                                  )}>
-                                  {brick.name}
+                                  className={clsx({
+                                    'text-slate-900 dark:text-slate-100': brick.status,
+                                    'text-slate-400': !brick.status,
+                                    'font-semibold': true
+                                  })}
                                 </p>
                                 <p className="mt-0.5 text-xs text-slate-400">{brick.description}</p>
                               </div>
