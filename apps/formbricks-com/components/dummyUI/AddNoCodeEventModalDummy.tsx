@@ -55,7 +55,7 @@ export const AddNoCodeEventModalDummy: React.FC<EventDetailModalProps> = ({ open
                     Inner Text
                   </Label>
                 </div>
-                <div className="hidden items-center space-x-2 rounded-lg bg-slate-50 p-3 dark:bg-slate-600 md:flex">
+                className="hidden items-center space-x-2 rounded-lg bg-slate-50 p-3 dark:bg-slate-600 md:flex"
                   <RadioGroupItem disabled value="cssSelector" id="cssSelector" className="bg-slate-50" />
                   <Label
                     htmlFor="cssSelector"
