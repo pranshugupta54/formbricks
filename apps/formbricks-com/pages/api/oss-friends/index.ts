@@ -34,6 +34,11 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
           href: "https://devhunt.org/",
         },
         {
+          name: "digitomize",
+          description: "Platform for exploring coding challenges and creating dynamic portfolios that showcase their coding skills and achievements.",
+          href: "https://digitomize.com"
+        },
+        {
           name: "Documenso",
           description:
             "The Open-Source DocuSign Alternative. We aim to earn your trust by enabling you to self-host the platform and examine its inner workings.",
